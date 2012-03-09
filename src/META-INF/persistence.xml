@@ -7,8 +7,6 @@
 
 	<persistence-unit name="IssueTracker" transaction-type="RESOURCE_LOCAL">
 	
-		<class></class>
-	
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@10.211.55.3:1521:XE" />
@@ -18,7 +16,8 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="none" /> <!-- create | create-drop | validate | update -->
+			<property name="hibernate.hbm2ddl.auto" value="create" /> <!-- create | create-drop | validate | update -->
+			<property name="hibernate.default_schema" value="issuetracker" />
 		</properties>
 		
 	</persistence-unit>

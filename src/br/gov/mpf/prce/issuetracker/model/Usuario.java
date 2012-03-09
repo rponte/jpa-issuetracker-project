@@ -1,4 +1,4 @@
-package br.gov.mpf.prce.issuetracker;
+package br.gov.mpf.prce.issuetracker.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +20,7 @@ public class Usuario {
 	
 	@Column(name="USU_NOME", length=100, nullable=false)
 	private String nome;
-	@Column(name="USU_LOGIN", length=20, nullable=false, unique=true)
+	@Column(name="USU_LOGIN", length=20, nullable=false, unique=false)
 	private String login;
 	private String senha;
 	private String email;

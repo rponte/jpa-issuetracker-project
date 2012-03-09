@@ -1,27 +1,16 @@
 package br.gov.mpf.prce.issuetracker;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import br.gov.mpf.prce.issuetracker.dao.UsuarioDao;
+import br.gov.mpf.prce.issuetracker.model.Usuario;
 
 public class DelecaoDeUsuario {
 
 	public static void main(String[] args) {
+		UsuarioDao usuarioDao = new UsuarioDao();
 		
-		EntityManagerFactory factory = Persistence
-				.createEntityManagerFactory("IssueTracker");
+		Usuario usuario = usuarioDao.carrega(2L);
 		
-		EntityManager entityManager = factory.createEntityManager();
-		
-		Usuario usuario = entityManager.find(Usuario.class, 1L);
-		
-		EntityTransaction tx = entityManager.getTransaction();
-		tx.begin();
-		
-		entityManager.remove(usuario);
-		
-		tx.commit();
-		entityManager.close();
+		usuarioDao.remove(usuario);
 	}
+
 }
