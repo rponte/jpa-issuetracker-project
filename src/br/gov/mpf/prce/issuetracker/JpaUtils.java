@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.hibernate.Session;
+
 public class JpaUtils {
 	
 	private static EntityManagerFactory factory;
@@ -17,4 +19,17 @@ public class JpaUtils {
 		return entityManager;
 	}
 	
+	public static Session getSession(EntityManager entityManager) {
+		Session session = ((Session) entityManager.getDelegate());
+		return session;
+	}
+	
 }
+
+
+
+
+
+
+
+

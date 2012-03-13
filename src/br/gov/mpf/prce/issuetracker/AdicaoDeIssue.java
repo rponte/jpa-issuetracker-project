@@ -25,11 +25,11 @@ public class AdicaoDeIssue {
 		
 		// inserir um Comentario
 		
-		Comentario comentario1 = criaComentario("comentario 01", hoje, usuario);
-		Comentario comentario2 = criaComentario("comentario 02", hoje, usuario);
-		
-		issue.getComentarios().add(comentario1);
-		issue.getComentarios().add(comentario2);
+//		Comentario comentario1 = criaComentario("comentario 01", hoje, usuario);
+//		Comentario comentario2 = criaComentario("comentario 02", hoje, usuario);
+//		
+//		issue.getComentarios().add(comentario1);
+//		issue.getComentarios().add(comentario2);
 		
 		salvaIssue(issue);
 		
@@ -54,7 +54,7 @@ public class AdicaoDeIssue {
 		issue.setDescricao("Erro ao submeter formulario via ajax.");
 		issue.setTipo(TipoDaIssue.BUG);
 		issue.setReportadoEm(hoje);
-		issue.setAtualizadoEm(hoje);
+//		issue.setAtualizadoEm(hoje);
 		issue.setStatus(Status.ABERTA);
 		issue.setProjeto(projeto);
 		issue.setReportadoPor(usuario);

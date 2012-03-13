@@ -1,14 +1,23 @@
 package br.gov.mpf.prce.issuetracker.dao;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 
 import br.gov.mpf.prce.issuetracker.JpaUtils;
 import br.gov.mpf.prce.issuetracker.model.Comentario;
 import br.gov.mpf.prce.issuetracker.model.Issue;
-import br.gov.mpf.prce.issuetracker.model.Status;
 
 public class IssueDao {
 	
@@ -66,7 +75,79 @@ public class IssueDao {
 		
 		tx.commit();
 	}
+	
+	public List<Issue> listaTudo() {
+		
+		Session session = JpaUtils.getSession(entityManager);
+		
+		Criteria criteria = session.createCriteria(Issue.class);
+		List issues = criteria.list();
+		
+		return issues;
+	}
+	
+	public List<Issue> getIssuesComComentarios() {
+		
+		Session session = JpaUtils.getSession(entityManager);
+		
+		Criteria criteria = session.createCriteria(Issue.class);
+		criteria.add(Restrictions.isNotEmpty("comentarios"));
+		
+		criteria.setProjection(
+				Projections.projectionList()
+					.add(Property.forName("id"), "id")
+					.add(Property.forName("sumario"), "sumario")
+					.add(Property.forName("descricao"), "descricao")
+					.add(Property.forName("projeto"), "projeto")
+				);
+		
+		criteria.setResultTransformer(Transformers.aliasToBean(Issue.class));
+		
+//		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		
+		return criteria.list();
+		
+//		TypedQuery<Issue> query = entityManager
+//				.createQuery("select distinct(issue) from Issue issue " +
+//						"join fetch issue.comentarios " + // força EAGER via join
+//						"where issue.comentarios is not empty", Issue.class);
+//		
+//		List<Issue> issues = query.getResultList();
+//		
+//		return issues;
+	}
+	
+	public List<Comentario> getComentarios(Long idDaIssue) {
+		
+		TypedQuery<Comentario> query = entityManager
+				.createQuery("select comentario from Issue issue " +
+						"join issue.comentarios as comentario " + 
+							"with comentario.criadaEm < CURRENT_DATE " +
+						"where issue.id = :id", Comentario.class);
+		
+		query.setParameter("id", idDaIssue);
+		
+		List<Comentario> comentarios = query.getResultList();
+		
+		return comentarios;
+	}
+	
 
+	public List<Issue> buscaPorSumario(String sumario) {
+		
+		Session session = JpaUtils.getSession(entityManager);
+		
+		Criteria criteria = session.createCriteria(Issue.class);
+		criteria.add(Restrictions.ilike("sumario", sumario, MatchMode.ANYWHERE));
+		criteria.setFetchMode("projeto", FetchMode.SELECT); // == FetchMode.LAZY
+		criteria.setFetchMode("reportadoPor", FetchMode.SELECT);
+		criteria.setFetchMode("assinadoPara", FetchMode.SELECT);
+		
+		return criteria.list();
+		
+	}
+	
+	
 }
 
 

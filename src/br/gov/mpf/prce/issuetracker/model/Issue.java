@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -19,11 +20,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@EntityListeners({IssuePostLoad.class})
 public class Issue implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -193,6 +198,18 @@ public class Issue implements Serializable {
 		this.status = Status.FECHADA;
 		this.adicionaComentario(comentario);
 		this.atualizadoEm = new Date();
+	}
+	
+	@PrePersist
+	@PreUpdate
+	public void atualizaData() {
+		System.out.println(">>> @PrePersist");
+		this.atualizadoEm = new Date();
+	}
+	
+	@PostLoad
+	public void onPostLoad() {
+//		System.out.println(">>> @PostLoad");
 	}
 	
 }

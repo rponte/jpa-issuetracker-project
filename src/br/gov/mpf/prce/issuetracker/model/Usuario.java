@@ -7,12 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
 @Table(name="USUARIO")
+@NamedQuery(name="Usuario.buscaPorLogin", 
+	query="select u from Usuario u where u.login = :login")
 public class Usuario implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
