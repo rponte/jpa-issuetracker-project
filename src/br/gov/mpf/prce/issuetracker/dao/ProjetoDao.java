@@ -14,7 +14,11 @@ public class ProjetoDao {
 	private EntityManager entityManager;
 
 	public ProjetoDao() {
-		entityManager = JpaUtils.getEntityManager();
+//		entityManager = JpaUtils.getEntityManager();
+	}
+	
+	public ProjetoDao(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
 	public void salva(Projeto projeto) {

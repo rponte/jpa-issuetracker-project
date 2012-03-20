@@ -13,6 +13,14 @@ public class JpaUtils {
 	static {
 		factory = Persistence.createEntityManagerFactory("IssueTracker");
 	}
+	
+	public static JpaUtils newInstance() {
+		return new JpaUtils();
+	}
+	
+	public EntityManager createEntityManager() {
+		return getEntityManager();
+	}
 
 	public static EntityManager getEntityManager() {
 		EntityManager entityManager = factory.createEntityManager();

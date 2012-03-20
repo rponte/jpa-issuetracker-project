@@ -15,7 +15,11 @@ public class UsuarioDao {
 	private EntityManager entityManager;
 
 	public UsuarioDao() {
-		entityManager = JpaUtils.getEntityManager();
+//		entityManager = JpaUtils.getEntityManager();
+	}
+	
+	public UsuarioDao(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
 	public void salva(Usuario usuario) {

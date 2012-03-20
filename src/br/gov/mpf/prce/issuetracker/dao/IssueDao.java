@@ -24,7 +24,11 @@ public class IssueDao {
 	private EntityManager entityManager;
 
 	public IssueDao() {
-		entityManager = JpaUtils.getEntityManager();
+//		entityManager = JpaUtils.getEntityManager();
+	}
+	
+	public IssueDao(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
 	public void salva(Issue issue) {
