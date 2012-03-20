@@ -6,18 +6,16 @@ import java.io.IOException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import br.gov.mpf.prce.issuetracker.dao.UsuarioDao;
+import br.gov.mpf.prce.issuetracker.dao.UsuarioDaoImpl;
 import br.gov.mpf.prce.issuetracker.spring.impl.UsuarioParser;
 
 public class ExecutaImportacaoDeUsuarios {
 
 	public static void main(String[] args) throws IOException {
 		
-		ApplicationContext ctx 
-			= new ClassPathXmlApplicationContext("applicationContext.xml", "applicationContext-persistence.xml");
 		
 		ImportadorDeUsuarios importador 
-			= ctx.getBean("importadorDeUsuarios", ImportadorDeUsuarios.class);
+			= SpringUtils.getBean("importadorDeUsuarios", ImportadorDeUsuarios.class);
 		
 		importador.importa();
 		

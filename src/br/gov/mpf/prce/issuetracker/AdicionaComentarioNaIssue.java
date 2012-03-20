@@ -2,6 +2,7 @@ package br.gov.mpf.prce.issuetracker;
 
 import br.gov.mpf.prce.issuetracker.dao.IssueDao;
 import br.gov.mpf.prce.issuetracker.model.Comentario;
+import br.gov.mpf.prce.issuetracker.spring.SpringUtils;
 
 public class AdicionaComentarioNaIssue {
 
@@ -9,7 +10,7 @@ public class AdicionaComentarioNaIssue {
 
 		Comentario comentario = criaComentario("comentario");
 
-		IssueDao issueDao = new IssueDao();
+		IssueDao issueDao = SpringUtils.getBean(IssueDao.class);
 		issueDao.comenta(3L, comentario);
 		
 	}

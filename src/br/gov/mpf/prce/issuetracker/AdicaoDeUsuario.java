@@ -3,7 +3,9 @@ package br.gov.mpf.prce.issuetracker;
 import javax.persistence.EntityManager;
 
 import br.gov.mpf.prce.issuetracker.dao.UsuarioDao;
+import br.gov.mpf.prce.issuetracker.dao.UsuarioDaoImpl;
 import br.gov.mpf.prce.issuetracker.model.Usuario;
+import br.gov.mpf.prce.issuetracker.spring.SpringUtils;
 
 public class AdicaoDeUsuario {
 
@@ -13,7 +15,7 @@ public class AdicaoDeUsuario {
 		// crio usuario
 		Usuario usuario = criaUsuario();
 		// gravo usuario
-		UsuarioDao usuarioDao = new UsuarioDao();
+		UsuarioDao usuarioDao = SpringUtils.getBean("usuarioDao", UsuarioDaoImpl.class);
 		usuarioDao.salva(usuario);
 		
 	}

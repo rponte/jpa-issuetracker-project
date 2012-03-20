@@ -8,18 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.mpf.prce.issuetracker.dao.UsuarioDao;
 import br.gov.mpf.prce.issuetracker.model.Usuario;
 import br.gov.mpf.prce.issuetracker.spring.impl.UsuarioParser;
 
+@Component("importadorDeUsuarios")
 public class ImportadorDeUsuarios {
 	
 	private File arquivo;
 	private UsuarioParser usuarioParser;
 	private UsuarioDao usuarioDao;
 	
-	public ImportadorDeUsuarios(File arquivo, UsuarioParser usuarioParser, UsuarioDao usuarioDao) {
+	@Autowired
+	public ImportadorDeUsuarios(
+			@Value("classpath:usuarios.txt") File arquivo, 
+			UsuarioParser usuarioParser, UsuarioDao usuarioDao) {
 		this.arquivo = arquivo;
 		this.usuarioParser = usuarioParser;
 		this.usuarioDao = usuarioDao;

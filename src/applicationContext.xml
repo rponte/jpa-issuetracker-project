@@ -14,14 +14,21 @@
 						http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
 
+	<context:annotation-config />
+	<context:component-scan base-package="br.gov.mpf.prce.issuetracker" />
+
+	<!-- 
 	<bean id="arquivo_txt" class="java.io.File">
 		<constructor-arg value="/Users/rponte/Documents/Curso de JSF - TriadWorks/MPF/Workspace/issuetracker-jpa/src/usuarios.txt" />
 	</bean>
+	 -->
 	
-	<bean id="usuarioParser" 
+	
+	<!-- <bean id="usuarioParser" 
 		class="br.gov.mpf.prce.issuetracker.spring.impl.UsuarioParser">
-	</bean>
+	</bean> -->
 	
+	<!-- 
 	<bean id="importadorDeUsuarios"
 		class="br.gov.mpf.prce.issuetracker.spring.ImportadorDeUsuarios"
 		scope="singleton">
@@ -29,6 +36,8 @@
 		<constructor-arg ref="usuarioParser" />
 		<constructor-arg ref="usuarioDao" />
 	</bean>
+	-->
+	 
 	
 </beans>
 

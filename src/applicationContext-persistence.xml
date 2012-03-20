@@ -13,7 +13,7 @@
 						http://www.springframework.org/schema/aop 
 						http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
-
+	<!-- 
 	<bean id="jpaUtils" 
 		class="br.gov.mpf.prce.issuetracker.JpaUtils" 
 		factory-method="newInstance" />
@@ -22,7 +22,19 @@
 		factory-bean="jpaUtils"
 		factory-method="createEntityManager">
 	</bean>
+	 -->
+	
+	<tx:annotation-driven />
+	
+	<bean id="transactionManager" 
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean" />
 	 
+	 <!-- 
 	<bean id="projetoDao"
 		class="br.gov.mpf.prce.issuetracker.dao.ProjetoDao">
 		<constructor-arg ref="entityManager" />
@@ -33,10 +45,12 @@
 		<constructor-arg ref="entityManager" />
 	</bean>
 	
+	
 	<bean id="usuarioDao"
 		class="br.gov.mpf.prce.issuetracker.dao.UsuarioDao">
 		<constructor-arg ref="entityManager" />
 	</bean>
+	 -->
 	
 </beans>
 

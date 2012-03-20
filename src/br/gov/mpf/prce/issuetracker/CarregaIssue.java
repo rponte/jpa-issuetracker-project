@@ -1,7 +1,11 @@
 package br.gov.mpf.prce.issuetracker;
 
+import javax.persistence.EntityManager;
+
 import br.gov.mpf.prce.issuetracker.dao.IssueDao;
+import br.gov.mpf.prce.issuetracker.dao.IssueDaoImpl;
 import br.gov.mpf.prce.issuetracker.model.Issue;
+import br.gov.mpf.prce.issuetracker.spring.SpringUtils;
 
 public class CarregaIssue {
 	
@@ -16,7 +20,7 @@ public class CarregaIssue {
 
 	public static void main(String[] args) {
 		
-		IssueDao dao = new IssueDao();
+		IssueDao dao = SpringUtils.getBean("issueDao", IssueDao.class);
 		Issue issue = dao.carrega(3L);
 		
 		issue.getComentarios().size();

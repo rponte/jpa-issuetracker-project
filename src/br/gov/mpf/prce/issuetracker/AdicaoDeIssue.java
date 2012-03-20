@@ -5,14 +5,18 @@ import java.util.Date;
 import javax.persistence.EntityManager;
 
 import br.gov.mpf.prce.issuetracker.dao.IssueDao;
+import br.gov.mpf.prce.issuetracker.dao.IssueDaoImpl;
 import br.gov.mpf.prce.issuetracker.dao.ProjetoDao;
+import br.gov.mpf.prce.issuetracker.dao.ProjetoDaoImpl;
 import br.gov.mpf.prce.issuetracker.dao.UsuarioDao;
+import br.gov.mpf.prce.issuetracker.dao.UsuarioDaoImpl;
 import br.gov.mpf.prce.issuetracker.model.Comentario;
 import br.gov.mpf.prce.issuetracker.model.Issue;
 import br.gov.mpf.prce.issuetracker.model.Projeto;
 import br.gov.mpf.prce.issuetracker.model.Status;
 import br.gov.mpf.prce.issuetracker.model.TipoDaIssue;
 import br.gov.mpf.prce.issuetracker.model.Usuario;
+import br.gov.mpf.prce.issuetracker.spring.SpringUtils;
 
 public class AdicaoDeIssue {
 
@@ -46,7 +50,7 @@ public class AdicaoDeIssue {
 	}
 
 	private static void salvaIssue(Issue issue) {
-		IssueDao issueDao = new IssueDao();
+		IssueDao issueDao = SpringUtils.getBean("issueDao", IssueDaoImpl.class);
 		issueDao.salva(issue);
 	}
 
@@ -65,13 +69,12 @@ public class AdicaoDeIssue {
 	}
 
 	private static Usuario buscaUsuarioPorId(long id) {
-		UsuarioDao usuarioDao = new UsuarioDao();
+		UsuarioDao usuarioDao = SpringUtils.getBean("usuarioDao", UsuarioDaoImpl.class);
 		return usuarioDao.carrega(id);
 	}
 
 	private static Projeto buscaProjetoPorId(long id) {
-		EntityManager entityManager = JpaUtils.getEntityManager();
-		ProjetoDao projetoDao = new ProjetoDao(entityManager);
+		ProjetoDao projetoDao = SpringUtils.getBean("projetoDao", ProjetoDaoImpl.class);
 		return projetoDao.carrega(id);
 	}
 	
