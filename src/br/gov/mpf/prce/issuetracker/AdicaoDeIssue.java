@@ -2,6 +2,8 @@ package br.gov.mpf.prce.issuetracker;
 
 import java.util.Date;
 
+import javax.persistence.EntityManager;
+
 import br.gov.mpf.prce.issuetracker.dao.IssueDao;
 import br.gov.mpf.prce.issuetracker.dao.ProjetoDao;
 import br.gov.mpf.prce.issuetracker.dao.UsuarioDao;
@@ -68,7 +70,8 @@ public class AdicaoDeIssue {
 	}
 
 	private static Projeto buscaProjetoPorId(long id) {
-		ProjetoDao projetoDao = new ProjetoDao();
+		EntityManager entityManager = JpaUtils.getEntityManager();
+		ProjetoDao projetoDao = new ProjetoDao(entityManager);
 		return projetoDao.carrega(id);
 	}
 	

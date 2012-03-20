@@ -17,8 +17,6 @@ public class ProjetoDao {
 	
 	private EntityManager entityManager;
 
-	public ProjetoDao() {}
-	
 	public ProjetoDao(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}

@@ -13,16 +13,13 @@ import br.gov.mpf.prce.issuetracker.dao.UsuarioDao;
 import br.gov.mpf.prce.issuetracker.model.Usuario;
 import br.gov.mpf.prce.issuetracker.spring.impl.UsuarioParser;
 
-@Component
 public class ImportadorDeUsuarios {
 	
 	private File arquivo;
 	private UsuarioParser usuarioParser;
 	private UsuarioDao usuarioDao;
 	
-	@Autowired
-	public ImportadorDeUsuarios(@Value("classpath:usuarios.txt") File arquivo, 
-			UsuarioParser usuarioParser, @Qualifier("usuarioDaoImpl") UsuarioDao usuarioDao) {
+	public ImportadorDeUsuarios(File arquivo, UsuarioParser usuarioParser, UsuarioDao usuarioDao) {
 		this.arquivo = arquivo;
 		this.usuarioParser = usuarioParser;
 		this.usuarioDao = usuarioDao;
