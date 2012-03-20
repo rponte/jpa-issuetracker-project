@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-3.1.xsd 
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-3.1.xsd 
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+
+	<bean id="arquivo_txt" class="java.io.File">
+		<constructor-arg value="/Users/rponte/Documents/Curso de JSF - TriadWorks/MPF/Workspace/issuetracker-jpa/src/usuarios.txt" />
+	</bean>
+	
+	<bean id="usuarioParser" 
+		class="br.gov.mpf.prce.issuetracker.spring.impl.UsuarioParser">
+	</bean>
+	
+	<bean id="importadorDeUsuarios"
+		class="br.gov.mpf.prce.issuetracker.spring.ImportadorDeUsuarios"
+		scope="singleton">
+		<constructor-arg value="classpath:usuarios.txt" />
+		<constructor-arg ref="usuarioParser" />
+		<constructor-arg ref="usuarioDao" />
+	</bean>
+	
+</beans>
+
+
+
+
+
+

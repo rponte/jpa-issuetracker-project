@@ -4,8 +4,15 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.mpf.prce.issuetracker.JpaUtils;
 import br.gov.mpf.prce.issuetracker.model.Usuario;
@@ -13,11 +20,9 @@ import br.gov.mpf.prce.issuetracker.model.Usuario;
 public class UsuarioDao {
 	
 	private EntityManager entityManager;
-
-	public UsuarioDao() {
-//		entityManager = JpaUtils.getEntityManager();
-	}
 	
+	public UsuarioDao() {}
+
 	public UsuarioDao(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
@@ -42,10 +47,7 @@ public class UsuarioDao {
 	}
 
 	public void remove(Usuario usuario) {
-		EntityTransaction tx = entityManager.getTransaction();
-		tx.begin();
 		entityManager.remove(usuario);
-		tx.commit();
 	}
 
 	public Usuario buscaPor(String login, String senha) {

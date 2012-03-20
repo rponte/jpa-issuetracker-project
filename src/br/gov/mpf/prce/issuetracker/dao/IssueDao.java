@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Criteria;
@@ -14,6 +15,11 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.mpf.prce.issuetracker.JpaUtils;
 import br.gov.mpf.prce.issuetracker.model.Comentario;
@@ -23,14 +29,12 @@ public class IssueDao {
 	
 	private EntityManager entityManager;
 
-	public IssueDao() {
-//		entityManager = JpaUtils.getEntityManager();
-	}
+	public IssueDao() {}
 	
 	public IssueDao(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
-
+	
 	public void salva(Issue issue) {
 		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
@@ -38,6 +42,7 @@ public class IssueDao {
 		tx.commit();
 	}
 
+	
 	public void atualiza(Issue issue) {
 		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
@@ -45,11 +50,13 @@ public class IssueDao {
 		tx.commit();
 	}
 
+	
 	public Issue carrega(Long id) {
 		Issue issue = entityManager.find(Issue.class, id);
 		return issue;
 	}
 
+	
 	public void remove(Issue issue) {
 		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
@@ -57,17 +64,15 @@ public class IssueDao {
 		tx.commit();
 	}
 
+	
 	public void comenta(Long idDaIssue, Comentario comentario) {
-		
-		EntityTransaction tx = entityManager.getTransaction();
-		tx.begin();
 		
 		Issue issue = carrega(idDaIssue);
 		issue.adicionaComentario(comentario);
 		
-		tx.commit();
 //		atualiza(issue);
 	}
+	
 	
 	public void fecha(Long idDaIssue, Comentario comentario) {
 		
@@ -80,6 +85,7 @@ public class IssueDao {
 		tx.commit();
 	}
 	
+	
 	public List<Issue> listaTudo() {
 		
 		Session session = JpaUtils.getSession(entityManager);
@@ -89,6 +95,8 @@ public class IssueDao {
 		
 		return issues;
 	}
+	
+//	@Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
 	
 	public List<Issue> getIssuesComComentarios() {
 		
@@ -120,6 +128,7 @@ public class IssueDao {
 //		
 //		return issues;
 	}
+	
 	
 	public List<Comentario> getComentarios(Long idDaIssue) {
 		

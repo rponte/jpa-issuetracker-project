@@ -4,7 +4,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import br.gov.mpf.prce.issuetracker.JpaUtils;
 import br.gov.mpf.prce.issuetracker.model.Projeto;
@@ -13,9 +17,7 @@ public class ProjetoDao {
 	
 	private EntityManager entityManager;
 
-	public ProjetoDao() {
-//		entityManager = JpaUtils.getEntityManager();
-	}
+	public ProjetoDao() {}
 	
 	public ProjetoDao(EntityManager entityManager) {
 		this.entityManager = entityManager;
@@ -35,17 +37,20 @@ public class ProjetoDao {
 		tx.commit();
 	}
 
+	
 	public Projeto carrega(Long id) {
 		Projeto projeto = entityManager.find(Projeto.class, id);
 		return projeto;
 	}
 
+	
 	public void remove(Projeto projeto) {
 		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
 		entityManager.remove(projeto);
 		tx.commit();
 	}
+	
 	
 	public List<Projeto> listaTudo() {
 		
@@ -57,6 +62,7 @@ public class ProjetoDao {
 		return projetos;
 	}
 	
+	
 	public List<String> listaTodosOsNomes() {
 		
 		TypedQuery<String> query = entityManager
@@ -66,6 +72,7 @@ public class ProjetoDao {
 		
 		return nomes;
 	}
+	
 	
 	public Long count() {
 		
