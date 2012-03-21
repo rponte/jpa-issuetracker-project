@@ -26,13 +26,53 @@
 	
 	<tx:annotation-driven />
 	
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	
 	<bean id="transactionManager" 
 		class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 	
+	<bean id="dataSource" 
+		class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+		<property name="initialPoolSize" value="3" />
+		<property name="minPoolSize" value="6" />
+		<property name="maxPoolSize" value="20" />
+		<property name="acquireIncrement" value="3" />
+	</bean>
+	
+	<!-- <bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/issuetracker" />
+    		<property name="username" value="postgres" />
+		<property name="password" value="1234" />
+	</bean> -->
+	
 	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean" />
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter">
+			<bean 
+				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="true" />
+				<property name="databasePlatform" value="${hibernate.databasePlatform}" />
+			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
+		</property>
+	</bean>
+	 
+	<bean 
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 	 
 	 <!-- 
 	<bean id="projetoDao"

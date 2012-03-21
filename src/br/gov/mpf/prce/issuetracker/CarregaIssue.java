@@ -20,9 +20,17 @@ public class CarregaIssue {
 
 	public static void main(String[] args) {
 		
-		IssueDao dao = SpringUtils.getBean("issueDao", IssueDao.class);
-		Issue issue = dao.carrega(3L);
+		IssueDao dao = SpringUtils.getBean(IssueDao.class);
+		Issue issue = dao.carrega(1L);
 		
 		issue.getComentarios().size();
 	}
 }
+
+
+
+
+
+
+
+

@@ -24,7 +24,8 @@ public class ImportadorDeUsuarios {
 	@Autowired
 	public ImportadorDeUsuarios(
 			@Value("classpath:usuarios.txt") File arquivo, 
-			UsuarioParser usuarioParser, UsuarioDao usuarioDao) {
+			UsuarioParser usuarioParser, 
+			@Qualifier("usuarioJdbcDao") UsuarioDao usuarioDao) {
 		this.arquivo = arquivo;
 		this.usuarioParser = usuarioParser;
 		this.usuarioDao = usuarioDao;

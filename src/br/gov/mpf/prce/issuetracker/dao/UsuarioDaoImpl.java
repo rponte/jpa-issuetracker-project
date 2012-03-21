@@ -2,22 +2,39 @@ package br.gov.mpf.prce.issuetracker.dao;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.mpf.prce.issuetracker.model.Usuario;
 
+@Primary
 @Transactional
-@Component
+@Repository
+@Scope("singleton")
 public class UsuarioDaoImpl implements UsuarioDao {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	@PostConstruct
+	public void init() {
+		System.out.println("CRIADO!!");
+	}
+	
+	@PreDestroy
+	public void destroy() {
+		System.out.println("MORREU!");
+	}
 	
 	@Override
 	public void salva(Usuario usuario) {

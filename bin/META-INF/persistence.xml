@@ -4,9 +4,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
 		http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+		
+	<persistence-unit name="IssueTracker">
+	</persistence-unit>
 
-	<persistence-unit name="IssueTracker" transaction-type="RESOURCE_LOCAL">
-	
+	<!-- <persistence-unit name="IssueTracker" transaction-type="RESOURCE_LOCAL">
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/issuetracker" />
@@ -16,10 +18,9 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="create" /> <!-- create | create-drop | validate | update -->
+			<property name="hibernate.hbm2ddl.auto" value="create___" /> create | create-drop | validate | update
 		</properties>
-		
-	</persistence-unit>
+	</persistence-unit> -->
 	
 </persistence>
 

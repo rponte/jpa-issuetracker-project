@@ -50,7 +50,7 @@ public class AdicaoDeIssue {
 	}
 
 	private static void salvaIssue(Issue issue) {
-		IssueDao issueDao = SpringUtils.getBean("issueDao", IssueDaoImpl.class);
+		IssueDao issueDao = SpringUtils.getBean(IssueDao.class);
 		issueDao.salva(issue);
 	}
 
@@ -69,12 +69,12 @@ public class AdicaoDeIssue {
 	}
 
 	private static Usuario buscaUsuarioPorId(long id) {
-		UsuarioDao usuarioDao = SpringUtils.getBean("usuarioDao", UsuarioDaoImpl.class);
+		UsuarioDao usuarioDao = SpringUtils.getBean(UsuarioDao.class);
 		return usuarioDao.carrega(id);
 	}
 
 	private static Projeto buscaProjetoPorId(long id) {
-		ProjetoDao projetoDao = SpringUtils.getBean("projetoDao", ProjetoDaoImpl.class);
+		ProjetoDao projetoDao = SpringUtils.getBean(ProjetoDao.class);
 		return projetoDao.carrega(id);
 	}
 	
