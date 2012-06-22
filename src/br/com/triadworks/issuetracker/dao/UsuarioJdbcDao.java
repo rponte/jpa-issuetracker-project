@@ -28,7 +28,7 @@ public class UsuarioJdbcDao implements UsuarioDao {
 				" values (?, ?, ?, ?, ?)", 
 										id,
 										usuario.getEmail(),
-										usuario.getLogin() + "-jdcb",
+										usuario.getLogin(),
 										usuario.getNome(),
 										usuario.getSenha());
 	}
