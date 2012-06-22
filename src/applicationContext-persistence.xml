@@ -15,7 +15,7 @@
 
 	<!-- 
 	<bean id="jpaUtils" 
-		class="br.gov.mpf.prce.issuetracker.JpaUtils" 
+		class="br.com.triadworksissuetracker.JpaUtils" 
 		factory-method="newInstance" />
 
 	<bean id="entityManager"
@@ -48,7 +48,7 @@
 	<!-- <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost:5432/issuetracker" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/issuetracker_jpa" />
     		<property name="username" value="postgres" />
 		<property name="password" value="1234" />
 	</bean> -->
@@ -76,18 +76,18 @@
 	 
 	 <!-- 
 	<bean id="projetoDao"
-		class="br.gov.mpf.prce.issuetracker.dao.ProjetoDao">
+		class="br.com.triadworksissuetracker.dao.ProjetoDao">
 		<constructor-arg ref="entityManager" />
 	</bean>
 	
 	<bean id="issueDao"
-		class="br.gov.mpf.prce.issuetracker.dao.IssueDao">
+		class="br.com.triadworksissuetracker.dao.IssueDao">
 		<constructor-arg ref="entityManager" />
 	</bean>
 	
 	
 	<bean id="usuarioDao"
-		class="br.gov.mpf.prce.issuetracker.dao.UsuarioDao">
+		class="br.com.triadworksissuetracker.dao.UsuarioDao">
 		<constructor-arg ref="entityManager" />
 	</bean>
 	 -->
