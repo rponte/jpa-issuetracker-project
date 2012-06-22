@@ -15,7 +15,7 @@
 
 
 	<context:annotation-config />
-	<context:component-scan base-package="br.com.triadworksissuetracker" />
+	<context:component-scan base-package="br.com.triadworks.issuetracker" />
 
 	<!-- 
 	<bean id="arquivo_txt" class="java.io.File">
@@ -25,12 +25,12 @@
 	
 	
 	<!-- <bean id="usuarioParser" 
-		class="br.com.triadworksissuetracker.spring.impl.UsuarioParser">
+		class="br.com.triadworks.issuetracker.spring.impl.UsuarioParser">
 	</bean> -->
 	
 	<!-- 
 	<bean id="importadorDeUsuarios"
-		class="br.com.triadworksissuetracker.spring.ImportadorDeUsuarios"
+		class="br.com.triadworks.issuetracker.spring.ImportadorDeUsuarios"
 		scope="singleton">
 		<constructor-arg value="classpath:usuarios.txt" />
 		<constructor-arg ref="usuarioParser" />

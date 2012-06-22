@@ -15,7 +15,7 @@
 
 	<!-- 
 	<bean id="jpaUtils" 
-		class="br.com.triadworksissuetracker.JpaUtils" 
+		class="br.com.triadworks.issuetracker.JpaUtils" 
 		factory-method="newInstance" />
 
 	<bean id="entityManager"
@@ -76,18 +76,18 @@
 	 
 	 <!-- 
 	<bean id="projetoDao"
-		class="br.com.triadworksissuetracker.dao.ProjetoDao">
+		class="br.com.triadworks.issuetracker.dao.ProjetoDao">
 		<constructor-arg ref="entityManager" />
 	</bean>
 	
 	<bean id="issueDao"
-		class="br.com.triadworksissuetracker.dao.IssueDao">
+		class="br.com.triadworks.issuetracker.dao.IssueDao">
 		<constructor-arg ref="entityManager" />
 	</bean>
 	
 	
 	<bean id="usuarioDao"
-		class="br.com.triadworksissuetracker.dao.UsuarioDao">
+		class="br.com.triadworks.issuetracker.dao.UsuarioDao">
 		<constructor-arg ref="entityManager" />
 	</bean>
 	 -->
