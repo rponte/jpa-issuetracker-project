@@ -16,7 +16,7 @@ Os passos básicos são:
 2. Adicione o JDBC Driver no diretório `/lib/jdbc-drivers` (e ao classpath) caso não pretenda utilizar o `PostgreSQL`;
 3. Configure as informações do banco no arquivo `src/jdbc.properties`;
 4. Crie o banco de dados `issuetracker_jpa` com a ferramenta de sua preferência (como o `PGAdmin`, no caso do `PostgreSQL`);
-5. Execute a classe `ExecutaImportacaoDeUsuarios.java`;
+5. Execute a classe `br.com...spring.ExecutaImportacaoDeUsuarios.java`;
 6. Verifique se alguns usuários foram inseridos corretamente na tabela `USUARIO`;
 
 Informações adicionais
